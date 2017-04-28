@@ -1,0 +1,10 @@
+data(iris)
+library("scatterplot3d")
+x<-rbind(iris$Sepal.Length, iris$Sepal.Width, iris$Petal.Length)
+x<-t(x)
+result<-cmeans(x,3,7,verbose=TRUE,method="cmeans")
+#print(result)
+s3d <- scatterplot3d(result$membership, color=result$cluster, type="h", 
+                     angle=55, scale.y=0.7, pch=16, main="Pertinence")
+x11()
+plot(iris, col=result$cluster)
